@@ -4,6 +4,8 @@
   box-sizing: border-box;
 }
 
-div.box{
+main {
   padding: 1rem;
 }
+
+
