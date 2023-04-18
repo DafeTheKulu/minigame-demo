@@ -18,17 +18,21 @@ function genrateRandom() {
 
 function checkValue() {
     if (guessInput.value == randomValue) {
-
-        outputText.textContent = "You Win!"
+        
+        outputText.textContent = "You Win!" 
+        {
+        window.location.href = "http://localhost:8000/win";}
+        
     } else if (guessInput.value > randomValue && guessInput.value < 10) {
 
         outputText.textContent = "Value Too High!"
+        window.location.href = "http://localhost:8000/lose";
     } else if (guessInput.value > 10) {
 
         outputText.textContent = "Not More Than 10!"
     } else if (guessInput.value < randomValue && guessInput.value > 0) {
         outputText.textContent = "Value Too Low!"
-
+        window.location.href = "http://localhost:8000/lose";
     } else if (guessInput.value < 1) {
         outputText.textContent = "Value Must Be Greater Than 0"
 
