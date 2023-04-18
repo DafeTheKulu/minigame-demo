@@ -11,7 +11,7 @@ const buttonName = document.querySelector('#buttonName'); //
 // Event listener to submit username to server.
 buttonName.addEventListener('click', () => {
     const name = nameInput.value;
-    socket.emit('setUsername', name); // emit a socket.io event with the name data
+    socket.emit('setUsername', name); // emit a socket.io event 'setUsername' with the name data
 });
 
 

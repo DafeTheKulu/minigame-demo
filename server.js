@@ -1,5 +1,5 @@
 // Modules 
-const createError = require("http-errors");
+const createError = require("http-errors"); // Add HTTP-errors
 const express = require('express');  //Add express to project
 const app = express(); // Create new express app object
 const http = require('http'); // Add HTTP server/client
@@ -91,7 +91,7 @@ io.on("connection", (player) => {
   // Server player connected message 
   console.log('Player Connected: ' + playerId); 
 
-  // When setUsername message received 'emit' addPlayer with the player username and the client socket id
+  // When setUsername message received emit 'play' message and store random number to playerId index of players
   player.on('setUsername', (username) => {
     if (!players[playerId]) {
       let randomNumber = Math.floor(Math.random() * 10) + 1;
@@ -101,7 +101,7 @@ io.on("connection", (player) => {
     }
   });
 
-   // When guess message received 'emit' addPlayer with the player username and the client socket id
+   // When guess message received compare guessNumber to randomNumber and emit proper message
    player.on('guess', (guessNumber) => {
     const player = players[playerId];
     const randomNumber = player.randomNumber;
