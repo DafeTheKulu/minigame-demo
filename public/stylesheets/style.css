@@ -5,6 +5,7 @@
   box-sizing: border-box;
 }
 
+<<<<<<< HEAD
 /* Global styles */
 body {
   background-image: url("/img/num.jpg");
@@ -17,10 +18,13 @@ body {
 
 
 /* Main content styles */
+=======
+>>>>>>> bb9a7ddc1ef3d62286bb5943355c484f6923ba8a
 main {
   padding: 1rem;
 }
 
+<<<<<<< HEAD
 h1 {
   font-size: 2.5rem;
   font-weight: bold;
@@ -117,4 +121,6 @@ footer {
     padding: 20px;}
 
 
+=======
+>>>>>>> bb9a7ddc1ef3d62286bb5943355c484f6923ba8a
 
