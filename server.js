@@ -78,41 +78,41 @@ server.listen(3000, () => {
 //
 ////////////////////////////////////////////
 
-io.on("connection", (player) => {
+io.on("connection", (socket) => {
 
-  // Initialize variable to store id of player socket client
-  const playerId = player.id;
+  // Initialize variables to store id of player socket client
+  const playerId = socket.id;
 
   // Server player connected message 
-  console.log('Player Connected: ' + playerId); 
+  console.log('Socket Connected: ' + playerId); 
 
   // When setUsername message received emit 'play' message and store random number to playerId index of players
-  player.on('setUsername', (username) => {
+  socket.on('setUsername', (username) => {
     if (!players[playerId]) {
       let randomNumber = Math.floor(Math.random() * 10) + 1;
-      players[playerId] = { username, randomNumber };
-      io.emit('play');
+      players[playerId] = { username: username, randomNumber: randomNumber };
+      socket.emit('play');
       console.log('New player added ' + username + ':' + playerId + ':' + randomNumber);
     }
   });
 
    // When guess message received compare guessNumber to randomNumber and emit proper message
-   player.on('guess', (guessNumber) => {
+   socket.on('guess', (guessNumber) => {
     const player = players[playerId];
     const randomNumber = player.randomNumber;
 
     if (guessNumber == randomNumber) {
-      io.emit('correct');
+      socket.emit('correct');
     } else if (guessNumber > randomNumber) {
-      io.emit('incorrect', 'Too high!')
+      socket.emit('incorrect', 'Too high!')
     } else if (guessNumber < randomNumber) {
-      io.emit('incorrect', 'Too low!')
+      socket.emit('incorrect', 'Too low!')
     } else {
-      io.emit('incorrect');
+      socket.emit('incorrect');
     }
   });
 
-  player.on("disconnect", () => {
+  socket.on("disconnect", () => {
     console.log('User Disconnected: ' + playerId);
     delete players[playerId];
   });
