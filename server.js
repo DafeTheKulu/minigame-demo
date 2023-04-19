@@ -27,7 +27,6 @@ let players = {};
 
 
 
-
 //
 //     EXPRESS APP SETUP 
 //
@@ -47,7 +46,6 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Initalize routes
 app.use("/", index);
-
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -72,9 +70,8 @@ server.listen(3000, () => {
 
 
 
-
 //
-//   SOCKET IO FUNCTIONS
+//   SOCKETIO FUNCTIONS
 //
 ////////////////////////////////////////////
 
@@ -86,18 +83,25 @@ io.on("connection", (socket) => {
   // Server player connected message 
   console.log('Socket Connected: ' + playerId); 
 
-  // When setUsername message received emit 'play' message and store random number to playerId index of players
+
+  
+
+
+  // setusername -  When 'setUsername' message received emit 'play' message and store random number to playerId index of players
   socket.on('setUsername', (username) => {
     if (!players[playerId]) {
       let randomNumber = Math.floor(Math.random() * 10) + 1;
       players[playerId] = { username: username, randomNumber: randomNumber };
       socket.emit('play');
-      console.log('New player added ' + username + ':' + playerId + ':' + randomNumber);
+      console.log('New player added ' + username + ' : ' + playerId + ' : ' + randomNumber);
     }
   });
 
-   // When guess message received compare guessNumber to randomNumber and emit proper message
-   socket.on('guess', (guessNumber) => {
+
+
+
+  // guess - When 'guess' message received compare guessNumber to randomNumber and emit proper message
+  socket.on('guess', (guessNumber) => {
     const player = players[playerId];
     const randomNumber = player.randomNumber;
 
@@ -112,13 +116,22 @@ io.on("connection", (socket) => {
     }
   });
 
+
+
+
+  // disconnect - When 'disconnect' message received check if user is active and delete player
   socket.on("disconnect", () => {
-    console.log('User Disconnected: ' + playerId);
-    delete players[playerId];
+    if (players[playerId]) { // Socket connected but did user create a username? 
+      const playerName = players[playerId].username;
+      console.log('User Disconnected: ' + ' ' + playerName + ' : ' + playerId);
+      delete players[playerId];
+    } else {
+      console.log('User Disconnected: ' + playerId);
+    }
+
   });
 
 });
-
 
 
 module.exports = app;
