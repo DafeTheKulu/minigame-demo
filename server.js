@@ -27,10 +27,6 @@ let players = {};
 
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> bb9a7ddc1ef3d62286bb5943355c484f6923ba8a
 //
 //     EXPRESS APP SETUP 
 //
@@ -51,10 +47,6 @@ app.use(express.static(path.join(__dirname, "public")));
 // Initalize routes
 app.use("/", index);
 
-<<<<<<< HEAD
-
-=======
->>>>>>> bb9a7ddc1ef3d62286bb5943355c484f6923ba8a
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
@@ -78,14 +70,8 @@ server.listen(3000, () => {
 
 
 
-<<<<<<< HEAD
-
-//
-//   SOCKET IO FUNCTIONS
-=======
 //
 //   SOCKETIO FUNCTIONS
->>>>>>> bb9a7ddc1ef3d62286bb5943355c484f6923ba8a
 //
 ////////////////////////////////////////////
 
@@ -97,28 +83,16 @@ io.on("connection", (socket) => {
   // Server player connected message 
   console.log('Socket Connected: ' + playerId); 
 
-<<<<<<< HEAD
-  // When setUsername message received emit 'play' message and store random number to playerId index of players
-=======
 
   
 
 
   // setusername -  When 'setUsername' message received emit 'play' message and store random number to playerId index of players
->>>>>>> bb9a7ddc1ef3d62286bb5943355c484f6923ba8a
   socket.on('setUsername', (username) => {
     if (!players[playerId]) {
       let randomNumber = Math.floor(Math.random() * 10) + 1;
       players[playerId] = { username: username, randomNumber: randomNumber };
       socket.emit('play');
-<<<<<<< HEAD
-      console.log('New player added ' + username + ':' + playerId + ':' + randomNumber);
-    }
-  });
-
-   // When guess message received compare guessNumber to randomNumber and emit proper message
-   socket.on('guess', (guessNumber) => {
-=======
       console.log('New player added ' + username + ' : ' + playerId + ' : ' + randomNumber);
     }
   });
@@ -128,7 +102,6 @@ io.on("connection", (socket) => {
 
   // guess - When 'guess' message received compare guessNumber to randomNumber and emit proper message
   socket.on('guess', (guessNumber) => {
->>>>>>> bb9a7ddc1ef3d62286bb5943355c484f6923ba8a
     const player = players[playerId];
     const randomNumber = player.randomNumber;
 
@@ -143,11 +116,6 @@ io.on("connection", (socket) => {
     }
   });
 
-<<<<<<< HEAD
-  socket.on("disconnect", () => {
-    console.log('User Disconnected: ' + playerId);
-    delete players[playerId];
-=======
 
 
 
@@ -161,14 +129,9 @@ io.on("connection", (socket) => {
       console.log('User Disconnected: ' + playerId);
     }
 
->>>>>>> bb9a7ddc1ef3d62286bb5943355c484f6923ba8a
   });
 
 });
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> bb9a7ddc1ef3d62286bb5943355c484f6923ba8a
 module.exports = app;

@@ -1,14 +1,8 @@
-/* Reset styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
-<<<<<<< HEAD
+
 /* Global styles */
 body {
-  background-image: url("/img/num.jpg");
+  background-image: url("/img/num.jpg"); /*image-source = https://www.besthdwallpaper.com/geometric/black-mesh-grids-dt_en-US-17231.html */
   font-family: Arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
@@ -18,47 +12,42 @@ body {
 
 
 /* Main content styles */
-=======
->>>>>>> bb9a7ddc1ef3d62286bb5943355c484f6923ba8a
 main {
   padding: 1rem;
 }
 
-<<<<<<< HEAD
 h1 {
+  font-family: cursive;
   font-size: 2.5rem;
   font-weight: bold;
-  color: #f6f1f1;
+ color:rgb(58, 161, 235);
   margin-bottom: 1rem;
   text-align: center;
+  padding: 1rem;
 
 }
 h2 {
   font-size: 2rem;
-  font-family: 'Courier New', Courier, monospace;
-  font-style: italic;
-  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: #f8f8f8;
   margin-bottom: 1rem;
   text-align: center;
+  padding: 0.5rem;
 }
 
 h3 {
+  color:rgb(58, 161, 235);
   font-size: 1.5rem;
-  font-weight: bold;
-  color: #f8f8f8;
   margin-bottom: 1rem;
   text-align: center;
+  font-style: italic;
 }
 ol {
+  text-align: left;
   font-size: 1rem;
-  font-weight: lighter ; 
-   color: #f3f3f3;
-  margin-bottom: 1rem;
-  margin: auto;
-  width: 40%;
-
-  padding: 10px;
+  font-weight: lighter;
+  font-style: italic;
+  color: #f7f7f7;
 }
 
 b {
@@ -74,15 +63,13 @@ b {
 
 
 li {
-  font-size: 1rem;
+  text-align: left;
+  font-size: 1.5rem;
   font-weight: lighter;
   font-style: italic;
   color: #f7f7f7;
-  margin-bottom: 1rem;
-  margin: auto;
-  width: 50%;
 
-  padding: 10px;
+
 }
 
 a {
@@ -97,30 +84,29 @@ a {
 
 
 p {
-  font-size: 1rem;
+  text-align: left;
+  font-size: 2rem;
   font-weight: lighter;
   font-style: italic;
   color: #f7f7f7;
-  margin-bottom: 1rem;
-text-align: center;
-  width: 50%;
-
-  padding: 20px;
+  
 }
 
 /* Footer styles */
 footer {
-  background-color: #333;
-  color: #fff;
-  padding: 1rem;
-  
-  margin-bottom: 1rem;
+  text-indent: 100px;
+  background-color:rgb(25, 150, 240);
+  color: rgb(6, 5, 5);
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: italic;
+  font-size: 25px;
+  border: 2px;
   text-align: center;
-    width: 100%;
-  
-    padding: 20px;}
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
+}
 
 
-=======
->>>>>>> bb9a7ddc1ef3d62286bb5943355c484f6923ba8a
 
