@@ -46,7 +46,7 @@ socket.on("play", () => {
 });
 
 socket.on("correct", () => {
-    outputText.textContent = "You win";
+    outputText.textContent = "You win! Click Restart";
 });
 
 socket.on("incorrect", (message) => {

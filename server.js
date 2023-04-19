@@ -1,10 +1,8 @@
 // Modules 
-const createError = require("http-errors"); // Add HTTP-errors
 const express = require('express');  //Add express to project
 const app = express(); // Create new express app object
 const http = require('http'); // Add HTTP server/client
 const path = require("path"); // Add path 
-
 
 
 
@@ -13,20 +11,17 @@ const path = require("path"); // Add path
 //
 /////////////////////////////////////////
 
-// Object to store individual player details on server-side
-let players = {}; 
+// Create http server/client attached to app object
+const server = http.createServer(app); 
 
 // Require Server from socket.io  
 const { Server } = require("socket.io"); 
 
-// Create http server/client attached to app object
-const server = http.createServer(app); 
-
 // Create new socket.io server and call it io
 const io = new Server(server); 
 
-// Tell Express to use io object 
-app.set('socket.io', io);
+// Object to store individual player details on server-side
+let players = {}; 
 
 //////////////////////////////////////////
 
@@ -70,8 +65,8 @@ app.use(function (err, req, res, next) {
   res.render("error");
 });
 
-server.listen(8000, () => {
-  console.log('Server 8000 Active!')
+server.listen(3000, () => {
+  console.log('Game ServerIO Active!')
 })
 /////////////////////////////////////////////////////////////
 
