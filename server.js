@@ -70,56 +70,59 @@ server.listen(3000, () => {
 
 
 
+
 //
 //   SOCKETIO FUNCTIONS
 //
 ////////////////////////////////////////////
 
+// CONNECTION - When connection message received grab player socket information
+// This allows the application to communicate with specific sockets/users/devices
 io.on("connection", (socket) => {
 
-  // Initialize variables to store id of player socket client
+  // Initialize variables to store id of current player socket client
   const playerId = socket.id;
 
   // Server player connected message 
   console.log('Socket Connected: ' + playerId); 
 
 
-  
 
-
-  // setusername -  When 'setUsername' message received emit 'play' message and store random number to playerId index of players
+  // SETUSERNAME -  When 'setUsername' message received, generate random number, and store it to variable for specific user, 
+  // emit 'play' message to that socket only
   socket.on('setUsername', (username) => {
     if (!players[playerId]) {
-      let randomNumber = Math.floor(Math.random() * 10) + 1;
-      players[playerId] = { username: username, randomNumber: randomNumber };
-      socket.emit('play');
+      let randomNumber = Math.floor(Math.random() * 10) + 1; // generate random number 1 - 10
+      players[playerId] = { username: username, randomNumber: randomNumber }; // set username and their puzzle random number to object
       console.log('New player added ' + username + ' : ' + playerId + ' : ' + randomNumber);
+
+      // PLAY - emit play message to specific socket/user
+      socket.emit("play"); 
     }
   });
 
 
 
-
-  // guess - When 'guess' message received compare guessNumber to randomNumber and emit proper message
+  // GUESS - When 'guess' message received compare guessNumber to randomNumber and emit proper message
   socket.on('guess', (guessNumber) => {
-    const player = players[playerId];
-    const randomNumber = player.randomNumber;
+    const player = players[playerId]; // set current player details to get player's randomNumber
+    const randomNumber = player.randomNumber; // set to current socket/player random number to compare
 
+    // compare player's guessNumber to player's randomNumber 
     if (guessNumber == randomNumber) {
-      socket.emit('correct');
+      socket.emit('correct'); // emit correct message
     } else if (guessNumber > randomNumber) {
-      socket.emit('incorrect', 'Too high!')
+      socket.emit('incorrect', 'Too high!') // emit incorrect message with string
     } else if (guessNumber < randomNumber) {
-      socket.emit('incorrect', 'Too low!')
+      socket.emit('incorrect', 'Too low!') // emit incorrect message with string
     } else {
-      socket.emit('incorrect');
+      socket.emit('incorrect'); // emit incorrect message
     }
   });
 
 
 
-
-  // disconnect - When 'disconnect' message received check if user is active and delete player
+  // DISCONNECT - When 'disconnect' message received check if user made username and remote socket/player from object
   socket.on("disconnect", () => {
     if (players[playerId]) { // Socket connected but did user create a username? 
       const playerName = players[playerId].username;
@@ -134,4 +137,5 @@ io.on("connection", (socket) => {
 });
 
 
+//Export
 module.exports = app;
