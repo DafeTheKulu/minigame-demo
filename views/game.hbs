@@ -5,18 +5,22 @@
     <div id="name-input-container" class="d-block">
         <p>To Start,</p>
         <p>Enter Your Name</p>
-        <input class="mb-4" id="nameInput" type="text">
-        <button class="buttonName mt-2" id="buttonName" type="submit">PLAY</button>
+        <form id="name-form" action="" method="POST">
+            <input class="mb-4" id="nameInput" type="text" Required>
+            <button class="buttonName mt-2 btn btn-primary" id="buttonName" type="submit">PLAY</button>
+        </form>
     </div>
     <!-- Name Input end -->
 
     <!-- Game Interface -->
     <div id="game-interface-container" class="d-none"> <!-- display: none to Start -->
-        <p>Now You,</p>
+        <h2></h2>
         <p>Guess Number Between 1 to 10</p>
-        <input type="text" class="guessInput">
-        <button class="btn btn-primary buttonGuess" type="submit">Guess</button>
-        <button class="btn btn-danger buttonRestart" type="submit">Restart</button>
+        <form id="guess-form" action="" method="POST">
+            <input type="text" class="guessInput">
+            <button class="btn btn-primary buttonGuess" type="submit">Guess</button>
+            <button class="btn btn-danger buttonRestart" id="buttonRestart">Restart</button>
+        </form>
         <p class="output"></p>
         <p class="prevGuess"></p>
     </div>
