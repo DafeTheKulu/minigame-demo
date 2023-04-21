@@ -8,17 +8,11 @@ Live : https://minigame-kuqt.onrender.com/
 ## Step 2b:
 
 if (!players[playerId]) {
-
       // generate random number 1 - 10
-      
 			let randomNumber = Math.floor(Math.random() * 10) + 1; 
-			
 			players[playerId] = {
-			
 				username: username,
-				
 				randomNumber: randomNumber,
-				
 };
 
 ##Step 2c:
