@@ -78,59 +78,31 @@ io.on("connection", (socket) => {
 	/* -------- STEP 2a: Prepare the socket to respond when it receives a username -----------*/
 	// SETUSERNAME -  When 'setUsername' message received, generate random number, and store it to variable for specific user,
 	// emit 'play' message to that socket only
-	socket.on("setUsername", (username) => {
+	if (!players[playerId]) {
+		// generate random number 1 - 10
+		let randomNumber = Math.floor(Math.random() * 10) + 1;
+		players[playerId] = {
+			username: username,
+			randomNumber: randomNumber,
+		};
 		/* -------------Step 2b: Assign a random number to the new user -------------*/
-		if (!players[playerId]) {
-			let randomNumber = Math.floor(Math.random() * 10) + 1; // generate random number 1 - 10
-			players[playerId] = {
-				username: username,
-				randomNumber: randomNumber,
-			};
-			/*--------Step 2c: Set username and their puzzle random number to object*/
-			console.log(
-				"New player added " +
-					username +
-					" : " +
-					playerId +
-					" : " +
-					randomNumber
-			);
-			/* ------Step 2d: Emit play message to specific socket/user */
-			socket.emit("play");
-		}
-	});
 
-	// GUESS - When 'guess' message received compare guessNumber to randomNumber and emit proper message
-	socket.on("guess", (guessNumber) => {
-		const player = players[playerId]; // set current player details to get player's randomNumber
-		const randomNumber = player.randomNumber; // set to current socket/player random number to compare
+		/*--------Step 2c: Set username and their puzzle random number to object*/
 
-		/* ----------- Step 3: Compare player's guessNumber to player's randomNumber using emit() ---------*/
-		if (guessNumber == randomNumber) {
-			socket.emit("correct"); // emit correct message
-		} else if (guessNumber > randomNumber) {
-			socket.emit("incorrect", "Too high!"); // emit incorrect message with string
-		} else if (guessNumber < randomNumber) {
-			socket.emit("incorrect", "Too low!"); // emit incorrect message with string
-		} else {
-			socket.emit("incorrect"); // emit incorrect message
-		}
-	});
-
-	// DISCONNECT - When 'disconnect' message received check if user made username and remote socket/player from object
-	socket.on("disconnect", () => {
-		if (players[playerId]) {
-			// Socket connected but did user create a username?
-			const playerName = players[playerId].username;
-			console.log(
-				"User Disconnected: " + " " + playerName + " : " + playerId
-			);
-			delete players[playerId];
-		} else {
-			console.log("User Disconnected: " + playerId);
-		}
-	});
+		/* ------Step 2d: Emit play message to specific socket/user */
+	}
 });
+
+// GUESS - When 'guess' message received compare guessNumber to randomNumber and emit proper message
+socket.on("guess", (guessNumber) => {
+	const player = players[playerId]; // set current player details to get player's randomNumber
+	const randomNumber = player.randomNumber; // set to current socket/player random number to compare
+
+	/* ----------- Step 3: Compare player's guessNumber to player's randomNumber using emit() ---------*/
+});
+
+/* --------Step 4: Check if players disconnect and respond accordingly --------------------- */
+// DISCONNECT - When 'disconnect' message received check if user made username and remote socket/player from object
 
 //Export
 module.exports = app;
