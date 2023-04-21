@@ -3,9 +3,9 @@ Number guessing game incorporating SocketIO to generate random number, and check
 
 Live : https://minigame-kuqt.onrender.com/
 
-[server.js]
+###[server.js]
 
-Step 2b:
+## Step 2b:
 if (!players[playerId]) {
       // generate random number 1 - 10
 			let randomNumber = Math.floor(Math.random() * 10) + 1; 
@@ -14,7 +14,7 @@ if (!players[playerId]) {
 				randomNumber: randomNumber,
 };
 
-Step 2c:
+##Step 2c:
 console.log(
 				"New player added " +
 					username +
@@ -24,10 +24,10 @@ console.log(
 					randomNumber
 			);
       
-Step 2d:
+##Step 2d:
 socket.emit("play"); 
 ---------------------------------
-Step 3:
+##Step 3:
 if (guessNumber == randomNumber) {
 			socket.emit("correct"); // emit correct message
 		} else if (guessNumber > randomNumber) {
@@ -38,7 +38,7 @@ if (guessNumber == randomNumber) {
 			socket.emit("incorrect"); // emit incorrect message
 		}
 ---------------------------
-Step 4:
+##Step 4:
 socket.on("disconnect", () => {
 		if (players[playerId]) {
 			// Socket connected but did user create a username?
