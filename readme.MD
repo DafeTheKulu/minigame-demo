@@ -6,25 +6,41 @@ Live : https://minigame-kuqt.onrender.com/
 ###[server.js]
 
 ## Step 2b:
+
 if (!players[playerId]) {
+
       // generate random number 1 - 10
+      
 			let randomNumber = Math.floor(Math.random() * 10) + 1; 
+			
 			players[playerId] = {
+			
 				username: username,
+				
 				randomNumber: randomNumber,
+				
 };
 
 ##Step 2c:
+
 console.log(
+
 				"New player added " +
+				
 					username +
+					
 					" : " +
+					
 					playerId +
+					
 					" : " +
+					
 					randomNumber
+					
 			);
       
 ##Step 2d:
+
 socket.emit("play"); 
 ---------------------------------
 ##Step 3:
